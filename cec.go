@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+var connections []*Connection
+
 // Device structure
 type Device struct {
 	OSDName         string
@@ -78,6 +80,9 @@ func Open(name string, deviceName string) (*Connection, error) {
 		return nil, err
 	}
 
+	c.events = make(map[EventType]func())
+
+	connections = append(connections, c)
 	return c, nil
 }
 

@@ -51,6 +51,7 @@ import (
 // Connection class
 type Connection struct {
 	connection C.libcec_connection_t
+	events     map[EventType]func()
 }
 
 type cecAdapter struct {
